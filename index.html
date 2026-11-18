@@ -80,7 +80,7 @@ footer p { margin: 0 0 0.35rem; }
 </main>
 <footer>
 <p>featherfied.com</p>
-<p id="counting">Visits are counted with <a href="https://www.goatcounter.com/">GoatCounter</a>, without cookies or anything that identifies you.</p>
+<p id="counting" hidden></p>
 </footer>
 </div>
 <script>
@@ -93,8 +93,11 @@ footer p { margin: 0 0 0.35rem; }
     if (location.hash === "#toggle-goatcounter") {
       var off = localStorage.getItem("skipgc") === "t";
       if (off) localStorage.removeItem("skipgc"); else localStorage.setItem("skipgc", "t");
-      if (note) note.textContent = off ? "Your visits from this browser are counted again." :
-        "Your visits from this browser are no longer counted.";
+      if (note) {
+        note.textContent = off ? "Your visits from this browser are counted again." :
+          "Your visits from this browser are no longer counted.";
+        note.hidden = false;
+      }
     }
     if (localStorage.getItem("skipgc") === "t") return;
   } catch (e) {}
